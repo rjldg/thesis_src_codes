@@ -13,7 +13,7 @@ if not os.path.exists(PREDEFINED_DIR):
     os.makedirs(PREDEFINED_DIR)
 
 def gather_data(duration=5):
-    ser = serial.Serial('COM3', 9600, timeout=1)
+    ser = serial.Serial('COM3', 9600, timeout=1) # CHANGE THIS DEPENDING ON THE PORT USED
     time.sleep(3)
     filename = os.path.join(PREDEFINED_DIR, 'edible_oil_data.csv')
     
