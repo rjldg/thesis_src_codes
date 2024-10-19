@@ -6,27 +6,27 @@ import pandas as pd
 import random
 import os
 
-# Directory path to save the csv
+# Directory path for saving the csv
 PREDEFINED_DIR = './data/'
 
 if not os.path.exists(PREDEFINED_DIR):
     os.makedirs(PREDEFINED_DIR)
 
 def gather_data(duration=5):
-    ser = serial.Serial('COM3', 9600, timeout=1) # CHANGE THIS DEPENDING ON THE PORT USED
+    ser = serial.Serial('COM4', 9600, timeout=1) # CHANGE THIS DEPENDING ON THE PORT USED
     time.sleep(3)
     filename = os.path.join(PREDEFINED_DIR, 'edible_oil_data.csv')
     
     with open(filename, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(["MQ2", "MQ3", "MQ4", "MQ5", "MQ6"])
+        csvwriter.writerow(["MQ2", "MQ3", "MQ4", "MQ5", "MQ6", "MQ7", "MQ8", "MQ9", "MQ135", "MQ137"])
         
         start_time = time.time()
         while (time.time() - start_time) < duration:
             line = ser.readline().decode('utf-8', errors='ignore').strip()
             if line:
                 data = line.split(',')
-                if len(data) == 5:
+                if len(data) == 10:
                     csvwriter.writerow(data)
     
     ser.close()
